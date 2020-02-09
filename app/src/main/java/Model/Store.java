@@ -5,14 +5,19 @@
  */
 package Model;
 
-public class Store {
+import retrofit2.Call;
+import retrofit2.http.GET;
+import retrofit2.http.Path;
+
+public class Store{
     // Store Attributes
     private int number;
     private String name;
     private String type;
     private boolean hasPharmacy;
     private float salesTaxPercentage;
-    private Object address;
+    private Address address;
+    private Object _links;
 
     /**
      * Creates an instance of the Store class
@@ -26,7 +31,8 @@ public class Store {
                  String store_type,
                  boolean hasPharmacy,
                  float salesTaxPercentage,
-                 Object store_address
+                 Address store_address,
+                 Object _links
     ){
         this.number = store_number;
         this.name = store_name;
@@ -34,6 +40,7 @@ public class Store {
         this.hasPharmacy = hasPharmacy;
         this.salesTaxPercentage = salesTaxPercentage;
         this.address = store_address;
+        this._links = _links;
     }
 
     public int getStoreNumber(){ return this.number; }
@@ -42,7 +49,19 @@ public class Store {
 
     public String getType(){ return this.type; }
 
-    public Object getAddress(){ return this.address; }
+    public boolean isHasPharmacy() {
+        return hasPharmacy;
+    }
+
+    public float getSalesTaxPercentage() {
+        return salesTaxPercentage;
+    }
+
+    public Address getAddress(){ return this.address; }
+
+    public Object get_links(){
+        return this._links;
+    }
 
     @Override
     public String toString(){
